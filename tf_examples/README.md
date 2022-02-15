@@ -15,7 +15,7 @@
 - パッケージのビルド．
   ```
   sudo apt install ros-foxy-tf-transformations
-  sudo pip3 install transforms3d
+  pip3 install transforms3d
   cd ~/airobot_ws
   colcon build --packages-select simple_arm tf_examples
   ```
