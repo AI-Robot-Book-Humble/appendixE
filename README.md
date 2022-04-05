@@ -1,4 +1,4 @@
-# 「AI Robot Book」付録Cのプログラム
+# 「AI Robot Book」付録Eのプログラム
 
 升谷 保博  
 2022年2月  
@@ -17,7 +17,7 @@
 
 - このリポジトリを入手
   ```
-  git clone https://github.com/AI-Robot-Book/appendixC.git
+  git clone https://github.com/AI-Robot-Book/appendixE.git
   ```
 
 - 第6章に含まれるパッケージも使うので，まだであればそのリポジトリも入手．
