@@ -134,7 +134,7 @@
 - 上記のRViz，端末はすべて終わらせておく．
 - 端末を開き，以下を実行．
   ```
-  . ~/airobot_ws/install/local_setup.bash
+  source ~/airobot_ws/install/local_setup.bash
   ros2 launch tf_examples simple_arm.launch.py
   ```
   - RVizがのウィンドウが現れ，simple_armと赤色と緑色の動く矢印が表示される．
