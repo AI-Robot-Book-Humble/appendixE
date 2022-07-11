@@ -1,7 +1,7 @@
 # TFの説明のための例プログラム 
 
 升谷 保博  
-2022年1月  
+2022年7月  
 
 ## 概要
 
@@ -34,12 +34,18 @@
   ros2 run tf_examples planet_broadcaster
   ```
   - 座標系 `sun`に対して公転と自転をする座標系 `planet` をブロードキャストする．
+  - [Pythonスクリプト](tf_examples/planet_broadcaster.py)
+
 - 端末2
-  ```
-  rviz2
-  ```
-  - Displaysパネルの余計な項目を削除する．
-  - Global Options → Fixed Frames を `sun` に設定．
+  - RVizの過去の設定を削除
+    ```
+    rm ~/.rviz2/default.rviz
+    ```
+  - RVizを起動
+    ```
+    rviz2
+    ```
+  - Global Options → Fixed Frame を `sun` に設定．
   - Addボタンをクリック．現れたウィンドウのBy display typeの一覧の中から *TF* を選んで，OKをクリック
 
   <img src="images/planet_broadcaster.png" width="70%">
@@ -48,7 +54,8 @@
   ```
   ros2 run tf_examples satellite_broadcaster
   ```
-  - 座標系 `planet`に対して固定された座標系 `satelite` を静的ブロードキャストする．
+  - 座標系 `planet`に対して固定された座標系 `satellite` を静的ブロードキャストする．
+  - [Pythonスクリプト](tf_examples/satellite_broadcaster.py)
 - RViz
   - Displaysパネル内の *TF* 項目を展開．TFの情報が得られることを確認する．
     - Show Nmaes にチェックを入れると，TFの名前が表示される．
@@ -62,6 +69,7 @@
   ros2 run tf_examples satellite_listener
   ```
   - tfをリッスンして，座標系`satellite`から座標系`sun`への変換を取得し，その結果をPoseStampedとしてパブリッシュする．
+  - [Pythonスクリプト](tf_examples/satellite_listener.py)
 - RViz
   - Addボタンをクリック．現れたウィンドウのタブをBy topicに切り替え，一覧の中の`/pose`の下の *Pose* を選んで，OKをクリック
   - Displaysパネルに追加された *Pose* 項目を展開
@@ -75,6 +83,7 @@
   ros2 run tf_examples planet_broadcaster planet2 1 8
   ```
   - `planet_broadcaster`の別のノードを起動する．
+  - [Pythonスクリプト](tf_examples/planet_broadcaster.py)
   - ノード名，座標系名ともに`planet2`
   - 公転半径1[m]，公転周期8[s]
 
@@ -137,10 +146,9 @@
   source ~/airobot_ws/install/local_setup.bash
   ros2 launch tf_examples simple_arm.launch.py
   ```
-  - RVizがのウィンドウが現れ，simple_armと赤色と緑色の動く矢印が表示される．
-    - 赤色の矢印： トピック`/pose`．アームの手先に取り付けられたダミーの3次元センサの出力．
-    - 緑色の矢印： トピック`/pose2`．`/pose`のデータをアーム根本の座標系`base_link`に変換したもの．
-    - 止むを得ず矢印オブジェクトを使っているため，矢印の指す向きに意味はなく，矢印の始点（根本）の位置のみに意味がある．
+  - RVizがのウィンドウが現れ，simple_armと紫色と黄色の動く球が表示される．
+    - 紫色の球： `/point`トピック．アームの手先に取り付けられたダミーの3次元センサの出力．
+    - 黄色の球： `/point2`トピック．`/point`トピックの座標系を座標系`base_link`に変換したもの．
   - `joint_state_publisher_gui`のウインドウが現れ，スライダでsimple_armを操作できる．
 - 端末2
   ```
@@ -149,25 +157,24 @@
   - Hideのtfにチェックを入れた場合と入れない場合
 - [ローンチファイル](launch/simple_arm.launch.py)から実行されているノード
   - `robot_state_publisher`
-    - [simple_arm](https://github.com/AI-Robot-Book/simple_arm)パッケージで提供されているURDFを読み込んで，`/robot_description`，`/tf`，`/tf_static`などのトピックをパブリッシュする．
+    - [simple_arm](https://github.com/AI-Robot-Book/chapter6/tree/master/simple_arm)パッケージで提供されているURDFを読み込んで，`/robot_description`，`/tf`，`/tf_static`などのトピックをパブリッシュする．
   - `joint_state_publisher_gui`
     - スライダで入力された値を`/joint_states`トピックへパブリッシュする．
   - RViz
-    - このパッケージで提供する[Configファイル](launch/display.rviz)に応じて表示
+    - このパッケージで提供する[Configファイル](launch/simple_arm.rviz)に応じて表示
   - `static_transform_publisher`
     - `link2`に取り付けられた`dummy_sensor`の座標系の位置姿勢をブロードキャスト
   - `dummy_sensor_publisher`
-    - このパッケージで提供する[Pythonsスクリプト](tf_examples/dummy_sensor_publisher.py)
-    - 3次元の位置情報が取得できるセンサの代わりとして，円運動する点の座標に`frame_id: dummy_sensor`を添えてPoseSatmped型のトピック`/pose`へパブリッシュする．
+    - このパッケージで提供する[Pythonスクリプト](tf_examples/dummy_sensor_publisher.py)
+    - 3次元の位置情報が取得できるセンサの代わりとして，円運動する点の座標に`frame_id: dummy_sensor`を添えてPointSatmped型の`/point`トピックへパブリッシュする．
   - `dummy_sensor_subscriber`
-    - このパッケージで提供する[Pythonsスクリプト](tf_examples/dummy_sensor_subscriber.py)
-    - センサデータを想定した`/pose`トピックをサブスクライブし，その座標値を座標系`base_link`に変換する．
-    - 確認のため変換後の値を`frame_id: base_link`を添えてPoseSatmped型のトピック`/pose2`へパブリッシュする．
+    - このパッケージで提供する[Pythonスクリプト](tf_examples/dummy_sensor_subscriber.py)
+    - センサデータを想定した`/point`トピックをサブスクライブし，その座標値を座標系`base_link`に変換する．
+    - 確認のため変換後の値を`frame_id: base_link`を添えてPoseSatmped型の`/point2`トピックへパブリッシュする．
     - rclpyでは，データのトピックとtfをまとめて受信するAPIままだ提供されていないようなので，データのトピックのサブスクライバのコールバックの中でtfをリッスンしている．
     - rclpyでは，データのトピックを座標変換するAPIがまだ提供されていないので，`tf_transformations`モジュールの機能を使って自前で座標変換している．
-  - ダミーのセンサのトピックの型として，PointStamped型を使いたいが，RVizが動座標系に対するPointStamped型のデータを表示させると頻繁に落ちるので，PoseStamped型を使っている．
 
 ## 既知の問題
 
-- 動いている座標系で表現されるPointStampedを表示させるとRVizが頻繁に落ちる．
+- tfに関係する操作をしているとRVizが時々落ちる．
 - ROS2のPythonでは，C++の`tf2_ros::MessageFilter`に相当するものが用意されていない．また，`tf2_ros.Buffer.transform()`も使えない．
