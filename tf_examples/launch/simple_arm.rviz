@@ -115,42 +115,32 @@ Visualization Manager:
       Update Interval: 0
       Value: true
     - Alpha: 1
-      Axes Length: 1
-      Axes Radius: 0.10000000149011612
-      Class: rviz_default_plugins/Pose
-      Color: 255; 25; 0
+      Class: rviz_default_plugins/PointStamped
+      Color: 204; 41; 204
       Enabled: true
-      Head Length: 0.10000000149011612
-      Head Radius: 0.10000000149011612
-      Name: Pose
-      Shaft Length: 0.20000000298023224
-      Shaft Radius: 0.05000000074505806
-      Shape: Arrow
+      History Length: 1
+      Name: PointStamped
+      Radius: 0.10000000149011612
       Topic:
         Depth: 5
         Durability Policy: Volatile
         History Policy: Keep Last
         Reliability Policy: Reliable
-        Value: /pose
+        Value: /point
       Value: true
-    - Alpha: 1
-      Axes Length: 1
-      Axes Radius: 0.10000000149011612
-      Class: rviz_default_plugins/Pose
-      Color: 138; 226; 52
+    - Alpha: 0.5
+      Class: rviz_default_plugins/PointStamped
+      Color: 255; 255; 0
       Enabled: true
-      Head Length: 0.10000000149011612
-      Head Radius: 0.10000000149011612
-      Name: Pose2
-      Shaft Length: 0.20000000298023224
-      Shaft Radius: 0.05000000074505806
-      Shape: Arrow
+      History Length: 1
+      Name: PointStamped2
+      Radius: 0.20000000298023224
       Topic:
         Depth: 5
         Durability Policy: Volatile
         History Policy: Keep Last
         Reliability Policy: Reliable
-        Value: /pose2
+        Value: /point2
       Value: true
   Enabled: true
   Global Options:

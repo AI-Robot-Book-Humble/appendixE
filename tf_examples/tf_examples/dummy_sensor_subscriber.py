@@ -1,6 +1,6 @@
 import rclpy
 from rclpy.node import Node
-from geometry_msgs.msg import PoseStamped
+from geometry_msgs.msg import PointStamped
 from tf2_ros import TransformException
 from tf2_ros.buffer import Buffer
 from tf2_ros.transform_listener import TransformListener
@@ -14,8 +14,8 @@ class DummySensorSubscriber(Node):
         self.tf_buffer = Buffer()
         self.tf_listener = TransformListener(self.tf_buffer, self)
         self.subscription = self.create_subscription(
-            PoseStamped, 'pose', self.subscriber_callback, 10)
-        self.publisher = self.create_publisher(PoseStamped, 'pose2', 10)
+            PointStamped, 'point', self.subscriber_callback, 10)
+        self.publisher = self.create_publisher(PointStamped, 'point2', 10)
 
     def subscriber_callback(self, msg):
         try:
@@ -25,7 +25,7 @@ class DummySensorSubscriber(Node):
         except TransformException as ex:
             self.get_logger().info(str(ex))
             return
-        mp = msg.pose.position
+        mp = msg.point
         t = trans.transform.translation
         rq = trans.transform.rotation
         q = (rq.x, rq.y, rq.z, rq.w)
@@ -33,12 +33,12 @@ class DummySensorSubscriber(Node):
         p2 = quaternion_multiply(
             quaternion_multiply(q, p),
             quaternion_inverse(q))
-        msg2 = PoseStamped()
+        msg2 = PointStamped()
         msg2.header.stamp = msg.header.stamp
         msg2.header.frame_id = 'base_link'
-        msg2.pose.position.x = p2[0] + t.x
-        msg2.pose.position.y = p2[1] + t.y
-        msg2.pose.position.z = p2[2] + t.z
+        msg2.point.x = p2[0] + t.x
+        msg2.point.y = p2[1] + t.y
+        msg2.point.z = p2[2] + t.z
         self.publisher.publish(msg2)
 
 
