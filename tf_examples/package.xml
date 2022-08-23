@@ -2,10 +2,10 @@
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
   <name>tf_examples</name>
-  <version>0.1.0</version>
+  <version>1.0.0</version>
   <description>TF examples for AI Robot Book</description>
-  <maintainer email="masutani@osakac.ac.jp">MASUTANI Yasuhiro</maintainer>
-  <license>Apache License 2.0</license>
+  <maintainer email="ai-robot-book@googlegroups.com">MASUTANI Yasuhiro</maintainer>
+  <license>Apache-2.0</license>
 
   <exec_depend>rclpy</exec_depend>
   <exec_depend>std_msgs</exec_depend>
