@@ -1,29 +1,13 @@
-# 「AI Robot Book」付録Eのプログラム
-
-升谷 保博  
-2022年2月  
+# 付録E tf：座標系の管理
 
 ## 概要
 
-- 以下のROSパッケージを含む
-  - [tf_examples](tf_examples)
+ROS2とPythonで作って学ぶAIロボット入門（出村・萩原・升谷・タン著，講談社）付録Eのサンプルプログラムと補足情報などを掲載しています．
 
-## インストール
+## ディレクトリ構成
 
-- ROSのワークスペースを`~/airobot_ws`とする．
-  ```
-  cd ~/airobot_ws/src
-  ```
+- [tf_examples](tf_examples)： TFの説明のための例プログラム
 
-- このリポジトリを入手
-  ```
-  git clone https://github.com/AI-Robot-Book/appendixE.git
-  ```
+## 補足情報
 
-- 第6章に含まれるパッケージも使うので，まだであればそのリポジトリも入手．
-  ```
-  git clone https://github.com/AI-Robot-Book/chapter6.git
-  ```
-
-- 以降の作業は，それぞれのパッケージのドキュメントを参照．
-  - [tf_examples/README.md](tf_examples/README.md)
+今のところありません．
