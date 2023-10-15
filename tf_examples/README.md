@@ -1,9 +1,9 @@
-# TFの説明のための例プログラム 
+# TFの説明のための例プログラム（Humble版）
 
 ## 概要
 
 - PythonでROS2のTF（TF2）を扱うための例プログラム．
-- Ubuntu 20.04, ROS Foxyで作成・確認
+- Ubuntu 22.04, ROS Humbleで作成・確認
 
 ## インストール
 
@@ -14,15 +14,15 @@
 
 - このパッケージとsimple_armを含むリポジトリを入手．
   ```
-  git clone https://github.com/AI-Robot-Book/appendixE
-  git clone https://github.com/AI-Robot-Book/chapter6
+  git clone https://github.com/AI-Robot-Book-Humble/appendixE
+  git clone https://github.com/AI-Robot-Book-Humble/chapter6
   ```
 - パッケージのビルド．
   ```
-  sudo apt -y install ros-foxy-tf-transformations
+  sudo apt -y install ros-humble-tf-transformations
   pip3 install transforms3d
   cd ~/airobot_ws
-  colcon build --packages-select simple_arm tf_examples
+  colcon build --packages-select simple_arm_description tf_examples
   ```
 
 ## 実行
