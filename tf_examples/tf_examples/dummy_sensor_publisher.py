@@ -2,6 +2,7 @@ from math import pi, cos, sin
 import rclpy
 from rclpy.node import Node
 from geometry_msgs.msg import PointStamped
+from rclpy.time import Duration
 
 
 class DummySensorPublisher(Node):
@@ -16,7 +17,7 @@ class DummySensorPublisher(Node):
     def timer_callback(self):
         msg = PointStamped()
         now = self.get_clock().now()
-        msg.header.stamp = now.to_msg()
+        msg.header.stamp = (now - Duration(seconds=0.1)).to_msg()  # 0.1[s]遅らせる
         msg.header.frame_id = 'dummy_sensor'
         radius = 0.5
         distance = 0.5
