@@ -17,7 +17,7 @@ class DummySensorPublisher(Node):
     def timer_callback(self):
         msg = PointStamped()
         now = self.get_clock().now()
-        msg.header.stamp = (now - Duration(seconds=0.1)).to_msg()  # 0.1[s]遅らせる
+        msg.header.stamp = (now - Duration(seconds=0.1)).to_msg()  # 0.1[s]早める
         msg.header.frame_id = 'dummy_sensor'
         radius = 0.5
         distance = 0.5
