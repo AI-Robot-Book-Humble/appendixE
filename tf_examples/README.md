@@ -1,9 +1,9 @@
-# TFの説明のための例プログラム 
+# TFの説明のための例プログラム（Humble版）
 
 ## 概要
 
 - PythonでROS2のTF（TF2）を扱うための例プログラム．
-- Ubuntu 20.04, ROS Foxyで作成・確認
+- Ubuntu 22.04, ROS Humbleで作成・確認
 
 ## インストール
 
@@ -14,15 +14,15 @@
 
 - このパッケージとsimple_armを含むリポジトリを入手．
   ```
-  git clone https://github.com/AI-Robot-Book/appendixE
-  git clone https://github.com/AI-Robot-Book/chapter6
+  git clone https://github.com/AI-Robot-Book-Humble/appendixE
+  git clone https://github.com/AI-Robot-Book-Humble/chapter6
   ```
 - パッケージのビルド．
   ```
-  sudo apt -y install ros-foxy-tf-transformations
+  sudo apt -y install ros-humble-tf-transformations
   pip3 install transforms3d
   cd ~/airobot_ws
-  colcon build --packages-select simple_arm tf_examples
+  colcon build --packages-select simple_arm_description tf_examples
   ```
 
 ## 実行
@@ -98,8 +98,9 @@
 
 ## ヘルプ
 
-- tfに関係する操作をしているとRVizが時々落ちる．
-- ROS2のPythonでは，C++の`tf2_ros::MessageFilter`に相当するものが用意されていない．また，`tf2_ros.Buffer.transform()`も使えない．
+- ROS2のPythonでは，C++の`tf2_ros::MessageFilter`に相当するものが用意されていない．
+  - そのため，データのタイムスタンプとTFのタイムスタンプを調整することができない．
+  - simple_armの例では，センサデータのタイムスタンプを意図的に遅らせている．
 
 ## 著者
 
@@ -107,12 +108,15 @@
 
 ## 履歴
 
+- 2023-10-15: ROS Humbleに対応
 - 2022-08-23: ライセンス・ドキュメントの整備
 
 ## ライセンス
 
-Copyright (c) 2022, MASUTANI Yasuhiro  
+Copyright (c) 2022, 2023 MASUTANI Yasuhiro  
 All rights reserved.  
 This project is licensed under the Apache License 2.0 license found in the LICENSE file in the root directory of this project.
 
 ## 参考文献
+
+- [Using stamped datatypes with tf2_ros::MessageFilter](https://docs.ros.org/en/humble/Tutorials/Intermediate/Tf2/Using-Stamped-Datatypes-With-Tf2-Ros-MessageFilter.html)
