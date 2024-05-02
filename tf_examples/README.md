@@ -76,7 +76,7 @@
   rqt_graph
   ```
 - 端末4
-  - 実行中の`satellite_listener`をCtrl+cで終了させる．
+  - 実行中の`satellite_listener`をCtrl+Cで終了させる．
   - 以下を実行．
     ```
     ros2 run tf_examples satellite_listener planet2
