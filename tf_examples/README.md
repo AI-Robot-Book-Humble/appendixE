@@ -2,7 +2,7 @@
 
 ## 概要
 
-- PythonでROS2のTF（TF2）を扱うための例プログラム．
+- PythonでROS 2のTF（TF2）を扱うための例プログラム．
 - Ubuntu 22.04, ROS Humbleで作成・確認
 
 ## インストール
@@ -22,7 +22,7 @@
   sudo apt -y install ros-humble-tf-transformations
   pip3 install transforms3d
   cd ~/airobot_ws
-  colcon build --packages-select simple_arm_description tf_examples
+  colcon build --symlink-install --packages-select simple_arm_description tf_examples
   ```
 
 ## 実行
@@ -98,7 +98,7 @@
 
 ## ヘルプ
 
-- ROS2のPythonでは，C++の`tf2_ros::MessageFilter`に相当するものが用意されていない．
+- ROS 2のPythonでは，C++の`tf2_ros::MessageFilter`に相当するものが用意されていない．
   - そのため，データのタイムスタンプとTFのタイムスタンプを調整することができない．
   - simple_armの例では，センサデータのタイムスタンプを意図的に遅らせている．
 
