@@ -41,8 +41,10 @@ def generate_launch_description():
     stp = Node(
         package='tf2_ros',
         executable='static_transform_publisher',
-        arguments=['1', '0', '0.05', '-1.57', '0', '-1.57',
-                   'link2', 'dummy_sensor'],
+        arguments=[
+            '--x', '1', '--y', '0', '--z', '0.05',
+            '--roll', '-1.57', '--pitch', '0', '--yaw', '-1.57',
+            '--frame-id', 'link2', '--child-frame-id', 'dummy_sensor'],
     )
 
     dsp = Node(
