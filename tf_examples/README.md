@@ -22,7 +22,7 @@
   sudo apt -y install ros-humble-tf-transformations
   pip3 install transforms3d
   cd ~/airobot_ws
-  colcon build --symlink-install --packages-select simple_arm_description tf_examples
+  colcon build --packages-select simple_arm_description tf_examples
   ```
 
 ## 実行
